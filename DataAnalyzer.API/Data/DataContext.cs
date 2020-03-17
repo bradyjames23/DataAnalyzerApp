@@ -1,4 +1,5 @@
 using DataAnalyzer.API.Models;
+using DataAnalyzer.API.Models.AccessManagement;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAnalyzer.API.Data
@@ -10,5 +11,8 @@ namespace DataAnalyzer.API.Data
         }
 
         public DbSet<Value> Values { get; set; }
+        
+        // Access Management
+        public DbSet<User> Users { get; set; }
     }
 }
