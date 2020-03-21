@@ -1,0 +1,37 @@
+<div class="container mt-3">
+  <div *ngIf="!registerMode && !loginMode && !forgotMode" style="text-align: center;">
+    <h1>Transforming data into valuable insight.</h1>
+    <p class="lead">
+      Using advanced data science algorithms, Data Analyzer is a desktop data-mining platform that converts traffic data, 
+      scientific literature and your own business intelligence into actionable, valuable insight.
+    </p>
+    <div class="text-center">
+      <button class="btn btn-primary btn-lg mr-2" (click)="registerToggle()">Register</button>
+      <button class="btn btn-primary btn-lg" (click)="loginToggle()">Login</button>
+    </div>
+  </div>
+
+  <div *ngIf="registerMode" class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <app-register (cancelRegister)="toggleMode($event)" (loginRedirect)="toggleMode($event)" ></app-register>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="loginMode" class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <app-login (cancelLogin)="toggleMode($event)" (registerRedirect)="toggleMode($event)" (forgotRedirect)="toggleMode($event)"></app-login>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="forgotMode" class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <app-forgotpassword (cancelForgot)="toggleMode($event)" (registerRedirect)="toggleMode($event)" (loginRedirect)="toggleMode($event)"></app-forgotpassword>
+      </div>
+    </div>
+  </div>
+</div>
