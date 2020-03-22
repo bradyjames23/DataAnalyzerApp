@@ -12,6 +12,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ToggleService } from './_services/layout/toggle.service';
 import { ForgotpasswordComponent } from './pages/forgotpassword/forgotpassword.component';
+import { ErrorInceptorProvider } from './_services/authorization/error.interceptor';
 
 @NgModule({
    declarations: [
@@ -30,7 +31,8 @@ import { ForgotpasswordComponent } from './pages/forgotpassword/forgotpassword.c
    ],
    providers: [
       AuthService,
-      ToggleService
+      ToggleService,
+      ErrorInceptorProvider
    ],
    bootstrap: [
       AppComponent
