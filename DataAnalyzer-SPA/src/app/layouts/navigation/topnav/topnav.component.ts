@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/_services/authorization/auth.service';
+import { AlertifyService } from 'src/app/_services/utilities/alertify.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-topnav',
@@ -9,7 +11,9 @@ import { AuthService } from 'src/app/_services/authorization/auth.service';
 export class TopnavComponent implements OnInit {
   // model: any = {};
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService,
+              private alertify: AlertifyService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -23,13 +27,15 @@ export class TopnavComponent implements OnInit {
   // }
 
   loggedIn() {
-    const token = localStorage.getItem('token');
-    return !!token; // short hand for if - else statement, -- returns true or false
+    // const token = localStorage.getItem('token');
+    // return !!token; // short hand for if - else statement, -- returns true or false
+    return this.authService.loggedIn();
   }
 
   logout() {
     localStorage.removeItem('token');
-    console.log('logged out');
+    this.alertify.message('logged out');
+    this.router.navigate(['/home']);
   }
 
 }

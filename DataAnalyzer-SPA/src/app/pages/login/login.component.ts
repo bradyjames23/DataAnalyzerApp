@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from 'src/app/_services/authorization/auth.service';
+import { AlertifyService } from 'src/app/_services/utilities/alertify.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,9 @@ export class LoginComponent implements OnInit {
   model: any = {};
   toggleModes: any = {};
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+              private alertify: AlertifyService,
+              private router: Router) {
    }
 
   ngOnInit() {
@@ -21,9 +25,11 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authService.login(this.model).subscribe(next => {
-      console.log('logged in succesfully');
+      this.alertify.success('Logged in succesfully');
     }, error => {
-      console.log(error);
+      this.alertify.error(error);
+    }, () => {
+      this.router.navigate(['/messages']);
     });
   }
 
